@@ -18,10 +18,6 @@ body {
     scroll-behavior: smooth;
     margin-left: 220px;
     scroll-padding-top: 80px;
-    user-select: none; /* Prevents text selection */
-    -webkit-user-select: none; /* For Safari */
-    -moz-user-select: none; /* For Firefox */
-    -ms-user-select: none; /* For IE/Edge */
 }
 
 /* NAVIGATION */
