@@ -343,6 +343,22 @@ h2 {
         padding: 0.6rem 1rem;
         font-size: 0.9rem; /* Smaller text for mobile */
     }
+      section:not(#contact) {
+        padding: 3rem 1.5rem;
+    }
+
+    section:not(#contact) h2 {
+        padding-left: 0;
+    }
+
+    .grid {
+        padding: 0;
+    }
+    .more {
+        width: calc(100% - 3rem); /* Accounts for grid padding (mobile) */
+        margin: 2rem auto; /* Centers the section */
+    }
+
 }
 /* ===== LEFT ALIGNMENT FOR ALL SECTIONS EXCEPT CONTACT ===== */
 section:not(#contact) {
@@ -390,25 +406,7 @@ section:not(#contact) h2 {
     padding: 4rem 0;
 }
 
-/* ===== MOBILE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-    section:not(#contact) {
-        padding: 3rem 1.5rem;
-    }
 
-    section:not(#contact) h2 {
-        padding-left: 0;
-    }
-
-    .grid {
-        padding: 0;
-    }
-    .more {
-        width: calc(100% - 3rem); /* Accounts for grid padding (mobile) */
-        margin: 2rem auto; /* Centers the section */
-    }
-
-}
 /* More Section */
 .more {
     width: calc(100% - 4rem); /* Accounts for grid padding (desktop) */
