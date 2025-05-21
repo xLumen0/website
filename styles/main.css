@@ -282,12 +282,17 @@ h2 {
     text-align: center;
     padding: 1rem;
     cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px; /* Ensure enough height for vertical centering */
 }
 
 .cooking-card p {
     font-size: 1rem;
     color: var(--secondary-text);
     font-weight: 700; /* Make text bold */
+    margin: 0; /* Remove default margin */
 }
 
 /* Side Tab for Project Details */
@@ -361,13 +366,16 @@ h2 {
 
 .side-tab .project-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Reduced min width for better fit */
     gap: 1rem;
     margin-bottom: 1.5rem;
+    width: 100%; /* Ensure gallery uses full container width */
 }
 
 .side-tab .project-gallery img {
-    width: 100%;
+    width: auto; /* Retain original image scale */
+    height: auto; /* Retain original image scale */
+    max-width: var(--image-size, 30%); /* Use custom property with default value */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -446,5 +454,20 @@ h2 {
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+    .side-tab {
+        width: 100%; /* Full width on mobile */
+    }
+    .side-tab .tab-content .content-container {
+        max-width: 100%; /* Remove max-width constraint on mobile */
+        margin: 0;
+        border: none; /* Remove border on mobile for full-width display */
+        padding: 1rem; /* Adjusted padding for mobile */
+    }
+    .side-tab .project-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted for mobile */
+    }
+    .side-tab .project-gallery img {
+        max-width: 100%; /* Full width on mobile, overriding data-size */
     }
 }
