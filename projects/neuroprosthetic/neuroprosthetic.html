@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zsigmond Pelobello's neuroprosthetic project: a 3D-printed prosthetic hand controlled by brain waves using EEG technology.">
+    <meta name="keywords" content="Zsigmond Pelobello, neuroprosthetic, robotics, brain-computer interface, EEG">
+    <title>Neuroprosthetic - Zsigmond Pelobello</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="icon" type="image/x-icon" href="../../favicon.png">
+</head>
+<body>
+    <nav role="navigation">
+        <div class="nav-links">
+            <a href="/index.html#about">About</a>
+            <a href="/index.html#working">Current</a>
+            <a href="/index.html#projects">Projects</a>
+            <a href="/index.html#associations">Associations</a>
+            <a href="/index.html#blog">Blog</a>
+            <a href="/index.html#contact">Contact</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank" aria-label="LinkedIn">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+            <a href="https://github.com/xLumen0" target="_blank" aria-label="GitHub">
+                <i class='bx bxl-github'></i>
+            </a>
+            <a href="https://www.youtube.com/@zsiggyp" target="_blank" aria-label="YouTube">
+                <i class='bx bxl-youtube'></i>
+            </a>
+            <a href="https://substack.com/@zsigmondpelobello" target="_blank" aria-label="Substack">
+                <i class='bx bxs-news'></i>
+            </a>
+        </div>
+    </nav>
+    <main>
+        <section id="project-details" role="main">
+            <h1>Neuroprosthetic</h1>
+            <p class="subtitle">A 3D-printed prosthetic hand controlled by brain waves</p>
+            <div class="project-content">
+                <p>I built a prosthetic hand using 3D printing and EEG technology to interpret brain signals. This project combines my passion for robotics and brain-computer interfaces, aiming to create affordable assistive devices.</p>
+                <p>Key features include real-time signal processing and a lightweight design. I’m currently refining the EEG accuracy and exploring applications in rehabilitation.</p>
+                <h3>Demo Video</h3>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/your-video-id" title="Neuroprosthetic Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <h3>Gallery</h3>
+                <div class="project-gallery">
+                    <img src="image1.jpg" alt="Neuroprosthetic prototype" loading="lazy">
+                    <img src="image2.jpg" alt="EEG setup for neuroprosthetic" loading="lazy">
+                </div>
+                <a href="/index.html" class="back-link">← Back to Projects</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -58,7 +58,7 @@ nav a:hover {
 .nav-socials {
     margin-top: auto;
     padding-top: 2rem;
-    border-top: 1px solid #eee;
+    border cég-top: 1px solid #eee;
     display: flex;
     gap: 1.2rem;
 }
@@ -85,8 +85,8 @@ header {
 }
 
 .profile-img {
-    width: 300px;
-    height: 300px;
+    width: min(300px, 40vw);
+    height: min(300px, 40vw);
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
@@ -118,7 +118,7 @@ section {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -128,18 +128,16 @@ h2 {
     margin: 6rem auto 4rem;
 }
 
-/* Update the current work section */
 .current-description {
     max-width: 800px;
-    margin: 2rem 0; /* Removed auto margin */
+    margin: 2rem 0;
     padding: 0 2rem;
-    text-align: left; /* Changed from center */
+    text-align: left;
     font-size: 1.1rem;
     line-height: 1.8;
     opacity: 0.9;
 }
 
-/* Ensure parent section alignment */
 #working {
     text-align: left;
     padding: 4rem 2rem !important;
@@ -153,51 +151,54 @@ h2 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    width: 100%;
+    align-items: stretch;
 }
 
 /* CARDS */
 .project-card,
-.company-card {
+.company-card,
+.blog-card {
     background: white;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .project-card-cur {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(240, 126, 126, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--charcoal);
     transition: var(--transition);
-    position: relative; /* For positioning the "active" text */
-    border: 2px solid #000000; /* Add a border */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* Active label */
 .project-card-cur::before {
     content: "Active";
     position: absolute;
-    top: -10px; /* Adjust to position above the card */
-    left: 10px; /* Adjust to position inside the card */
-    background: #000000; /* Match border color */
-    color: white;
+    top: -10px;
+    left: 10px;
+    background: var(--charcoal);
+    color: var(--off-white);
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    z-index: 1; /* Ensure it's above the card */
+    z-index: 1;
 }
 
-/* Hover effect */
-.project-card-cur:hover {
-    transform: translateY(-5px);
-    background: #f0f0f0;
-    border-color: #727272; /* Darker border on hover */
-}
-
-.project-card:hover{
+.project-card-cur:hover,
+.project-card:hover,
+.blog-card:hover {
     transform: translateY(-5px);
     background: #f0f0f0;
 }
@@ -207,11 +208,14 @@ h2 {
     background: white;
 }
 
-.project-card h3 {
+.project-card h3,
+.company-card h3,
+.blog-card h3 {
     margin-bottom: 0.8rem;
 }
 
-.view-link {
+.view-link,
+.read-link {
     display: inline-block;
     margin-top: 1.5rem;
     color: var(--charcoal);
@@ -220,13 +224,17 @@ h2 {
     opacity: 0.8;
 }
 
-.view-link:hover {
+.view-link:hover,
+.read-link:hover {
     opacity: 1;
 }
 
 /* ASSOCIATIONS */
 .company-card img {
+    width: 40px;
     height: 40px;
+    object-fit: cover;
+    object-position: center;
     margin-bottom: 1rem;
     filter: grayscale(100%);
     transition: var(--transition);
@@ -244,9 +252,9 @@ h2 {
 
 .social-links {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping into multiple rows */
-    justify-content: center; /* Centers items horizontally */
-    gap: 1.5rem; /* Spacing between items */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -261,13 +269,57 @@ h2 {
     padding: 0.8rem 1.2rem;
     border-radius: 6px;
     transition: var(--transition);
-    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    white-space: nowrap;
 }
 
 .social-links a:hover {
     background: rgba(0,0,0,0.05);
 }
 
+/* PROJECT & BLOG PAGE */
+#project-details,
+#blog-details {
+    max-width: 800px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+.project-content,
+.blog-content {
+    margin-top: 2rem;
+}
+
+.project-content p + p,
+.blog-content p + p {
+    margin-top: 1.2rem;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.project-gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
 
 .bx {
     font-size: 1.5rem;
@@ -290,7 +342,7 @@ h2 {
         background: var(--off-white);
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         display: flex;
-        justify-content: center; /* Center the nav container */
+        justify-content: center;
         align-items: center;
     }
 
@@ -298,24 +350,24 @@ h2 {
         display: flex;
         flex-direction: row;
         gap: 1.2rem;
-        flex-wrap: wrap; /* Prevent wrapping */
-        justify-content: space-between; /* Spread out links */
-        width: 100%; /* Take up full width */
-        max-width: 600px; /* Limit width for very large mobile screens */
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+        max-width: 600px;
         padding: 0;
-        margin: 0 auto; /* Center the nav links container */
+        margin: 0 auto;
     }
 
     nav a {
         font-size: 0.9rem;
         padding: 0.3rem 0;
         white-space: nowrap;
-        flex: 1; /* Allow links to grow and fill space */
-        text-align: center; /* Center text within each link */
+        flex: 1;
+        text-align: center;
     }
 
     .nav-socials {
-        display: none; /* Hide socials on mobile */
+        display: none;
     }
 
     header {
@@ -333,17 +385,17 @@ h2 {
         padding: 3rem 0;
     }
 
-    /* CONTACT SECTION MOBILE */
     .social-links {
-        gap: 1rem; /* Smaller gap for mobile */
+        gap: 1rem;
         padding: 0 1rem;
     }
 
     .social-links a {
         padding: 0.6rem 1rem;
-        font-size: 0.9rem; /* Smaller text for mobile */
+        font-size: 0.9rem;
     }
-      section:not(#contact) {
+
+    section:not(#contact) {
         padding: 3rem 1.5rem;
     }
 
@@ -354,80 +406,75 @@ h2 {
     .grid {
         padding: 0;
     }
+
     .more {
-        width: calc(100% - 3rem); /* Accounts for grid padding (mobile) */
-        margin: 2rem auto; /* Centers the section */
+        width: calc(100% - 3rem);
+        margin: 2rem auto;
     }
 
+    #project-details,
+    #blog-details {
+        margin: 3rem auto;
+    }
 }
-/* ===== LEFT ALIGNMENT FOR ALL SECTIONS EXCEPT CONTACT ===== */
+
+/* LEFT ALIGNMENT FOR ALL SECTIONS EXCEPT CONTACT */
 section:not(#contact) {
     text-align: left;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem; /* Added horizontal padding */
+    padding: 4rem 2rem;
 }
 
-/* Headings alignment */
 section:not(#contact) h2 {
     text-align: left !important;
     margin-left: 0;
     padding-left: 2rem;
 }
 
-/* Grid content alignment */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    width: 100%; /* New */
-    align-items: stretch; /* New */
-}
-
-/* Card text alignment */
 .project-card,
 .company-card,
+.blog-card,
 .about-description,
 .current-description {
     text-align: left;
 }
 
-/* Header alignment */
 .header-text {
     padding-left: 2rem;
 }
 
-/* ===== CONTACT REMAINS CENTERED ===== */
-#contact {
-    text-align: center;
-    padding: 4rem 0;
-}
-
-
-/* More Section */
+/* MORE SECTION */
 .more {
-    width: calc(100% - 4rem); /* Accounts for grid padding (desktop) */
-    max-width: 1200px; /* Matches grid max-width */
-    background: white; /* Matches card background */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Matches card shadow */
-    text-align: center; /* Centers text */
-    padding: 1rem 0; /* Thin height */
-    margin: 2rem auto; /* Centers the section */
-    border-radius: 8px; /* Rounded corners */
-    transition: var(--transition); /* Smooth hover effect */
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 1rem 0;
+    margin: 2rem auto;
+    border-radius: 8px;
+    transition: var(--transition);
 }
 
 .more:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Subtle hover effect */
-    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
 }
 
 .more h3 {
-    font-size: 1.2rem; /* Smaller text */
-    font-weight: 600; /* Matches card text weight */
-    color: var(--charcoal); /* Matches your color scheme */
-    margin: 0; /* Removes default margin */
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.more a {
+    color: var(--charcoal);
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.more a:hover {
+    opacity: 1;
 }

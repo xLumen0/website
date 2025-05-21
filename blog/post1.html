@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zsigmond Pelobello discusses building a brain-controlled prosthetic using EEG technology for robotics and accessibility.">
+    <meta name="keywords" content="Zsigmond Pelobello, neuroprosthetic, EEG, robotics, brain-computer interface">
+    <title>Building a Brain-Controlled Prosthetic - Zsigmond Pelobello</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.png">
+</head>
+<body>
+    <nav role="navigation">
+        <div class="nav-links">
+            <a href="/index.html#about">About</a>
+            <a href="/index.html#working">Current</a>
+            <a href="/index.html#projects">Projects</a>
+            <a href="/index.html#associations">Associations</a>
+            <a href="/index.html#blog">Blog</a>
+            <a href="/index.html#contact">Contact</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank" aria-label="LinkedIn">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+            <a href="https://github.com/xLumen0" target="_blank" aria-label="GitHub">
+                <i class='bx bxl-github'></i>
+            </a>
+            <a href="https://www.youtube.com/@zsiggyp" target="_blank" aria-label="YouTube">
+                <i class='bx bxl-youtube'></i>
+            </a>
+            <a href="https://substack.com/@zsigmondpelobello" target="_blank" aria-label="Substack">
+                <i class='bx bxs-news'></i>
+            </a>
+        </div>
+    </nav>
+    <main>
+        <section id="blog-details" role="main">
+            <h1>Building a Brain-Controlled Prosthetic</h1>
+            <p class="subtitle">Exploring how EEG technology can transform robotics and accessibility</p>
+            <div class="blog-content">
+                <p>EEG technology allows us to interpret brain signals to control devices like prosthetics. My project focuses on making this accessible and affordable, using Python and Arduino.</p>
+                <p>The process involves capturing brain waves, processing them in real-time, and translating them into movements. Challenges include signal noise and calibration, but the potential for rehabilitation is huge.</p>
+                <p>Read the full post and subscribe on <a href="https://substack.com/@zsigmondpelobello" target="_blank">Substack</a> for more insights.</p>
+                <a href="/index.html#blog" class="back-link">← Back to Blog</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zsigmond Pelobello's portfolio showcasing robotics, programming, and innovative projects like neuroprosthetics.">
+    <meta name="keywords" content="Zsigmond Pelobello, robotics, programming, neuroprosthetics, brain-computer interfaces">
     <title>Zsigmond Pelobello</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="styles/main.css">
@@ -12,102 +14,142 @@
 </head>
 <body>
     <!-- NAVIGATION -->
-    <nav>
+    <nav role="navigation">
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#working">Current</a>
             <a href="#projects">Projects</a>
             <a href="#associations">Associations</a>
+            <a href="#blog">Blog</a>
             <a href="#contact">Contact</a>
         </div>
-        
-        <!-- Socials in Nav (Desktop Only) -->
         <div class="nav-socials">
-            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank">
+            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank" aria-label="LinkedIn">
                 <i class='bx bxl-linkedin'></i>
             </a>
-            <a href="https://github.com/xLumen0" target="_blank">
+            <a href="https://github.com/xLumen0" target="_blank" aria-label="GitHub">
                 <i class='bx bxl-github'></i>
             </a>
-            <a href="https://www.youtube.com/@zsiggyp" target="_blank">
+            <a href="https://www.youtube.com/@zsiggyp" target="_blank" aria-label="YouTube">
                 <i class='bx bxl-youtube'></i>
             </a>
-            <a href="https://substack.com/@zsigmondpelobello" target="_blank">
+            <a href="https://substack.com/@zsigmondpelobello" target="_blank" aria-label="Substack">
                 <i class='bx bxs-news'></i>
             </a>
         </div>
     </nav>
 
     <!-- HEADER -->
-    <header id="about">
+    <header id="about" role="banner">
         <div class="header-text">
             <h1>Zsigmond Pelobello</h1>
             <p class="subtitle">About Me</p>
             <div class="about-description">
                 <p>(zy-min)</p>
-                <p>I'm a 16 year old trying to do cool things. I'm passionate about technology, specifically robotics and programming. I'm always trying to branch out and extend my breadth of knowledge, hoping to learn new things. </p>
-                <p>I want to create projects that evokes joy, which I can then share with others.</p>
-              
+                <p>I'm a 16-year-old passionate about robotics and programming, working with tools like Python, Arduino, and EEG to build innovative projects.</p>
+                <p>I want to create projects that evoke joy, which I can share with others.</p>
             </div>
         </div>
-        <img src="images/headshotcrop.jpg" alt="Zsigmond" class="profile-img">
+        <img src="images/headshotcrop.jpg" alt="Zsigmond Pelobello, a young robotics enthusiast" class="profile-img" loading="lazy">
     </header>
 
     <!-- CURRENT WORK -->
-    <section id="working">
-        <h2>currently learning </h2>
+    <section id="working" role="region" aria-labelledby="working-heading">
+        <h2 id="working-heading">currently learning</h2>
         <div class="current-description">
-            <p>How to create a brain controlled prosthetic arm.</p>
-            <p>Genetically modifying enzymes, and applying them into real industries.</p>
+            <p>How to create a brain-controlled prosthetic arm using EEG technology.</p>
+            <p>Genetically modifying enzymes and applying them to real-world industries.</p>
         </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
-        <h2>things I've done</h2>
+    <section id="projects" role="region" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">things I've done</h2>
         <div class="grid">
             <div class="project-card-cur">
                 <h3>Neuroprosthetic</h3>
-                <p>3D Printed prosthetic hand that can be controlled using brain waves.</p>
-                <a href="https://the-bionic-journey.super.site/" class="view-link">View →</a>
+                <p>3D-printed prosthetic hand controlled by brain waves.</p>
+                <a href="projects/neuroprosthetic/neuroprosthetic.html" class="view-link">View →</a>
             </div>
             <div class="project-card">
                 <h3>CRM Manager</h3>
-                <p>Local chrome extension used to keep track of people I reach out to—reminding to follow up.</p>
-                <a href="https://www.linkedin.com/posts/zsigmond-pelobello-0aa83927b_i-created-a-chrome-extension-this-week-activity-7307064431014727681-vqFJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERKAEIBh87i-yAD7_uCwXu2OyY-sl1OVyg" class="view-link">View →</a>
+                <p>Local Chrome extension to track outreach and remind me to follow up.</p>
+                <a href="projects/crm-manager/crm-manager.html" class="view-link">View →</a>
             </div>
+            <!-- Add new projects here -->
+            <!-- Template:
+            <div class="project-card">
+                <h3>[Project Title]</h3>
+                <p>[Short description]</p>
+                <a href="projects/[project-name]/[project-name].html" class="view-link">View →</a>
+            </div>
+            -->
         </div>
         <div class="more">
-            <h3>🍲cooking up more stuff soon</h3>
+            <h3>🍲 cooking up more stuff soon</h3>
         </div>
     </section>
 
     <!-- ASSOCIATIONS -->
-    <section id="associations">
-        <h2>companies I know</h2>
+    <section id="associations" role="region" aria-labelledby="associations-heading">
+        <h2 id="associations-heading">companies I know</h2>
         <div class="grid">
             <div class="company-card">
-                <img src="images/ikea.jpg" alt="IKEA">
+                <img src="images/ikea.jpg" alt="IKEA logo" loading="lazy">
                 <h3>IKEA</h3>
-                <p>With a team of five, we were given the opportunity to send a recommendation deck to IKEA. They challenged us to think of ideas to improve the IKEA experience for our friends and family.  </p>
-                <br>
-                <p>Our idea did not get far.</p>
+                <p>Collaborated with a team of five to pitch innovative ideas for enhancing the IKEA experience, gaining valuable teamwork and presentation skills.</p>
             </div>
             <div class="company-card">
-                <img src="images/tks.jpg" alt="TKS">
+                <img src="images/tks.jpg" alt="The Knowledge Society logo" loading="lazy">
                 <h3>The Knowledge Society</h3>
                 <p>TKS 25' Innovate</p>
-                <p>An amazing program that helped me meet new friends, find new passions and allowed me to boost my growth 10x.</p>
+                <p>An amazing program that helped me meet new friends, find new passions, and boost my growth 10x.</p>
             </div>
+            <!-- Add new associations here -->
+            <!-- Template:
+            <div class="company-card">
+                <img src="images/[company-name].jpg" alt="[Company Name] logo" loading="lazy">
+                <h3>[Company Name]</h3>
+                <p>[Description of involvement]</p>
+            </div>
+            -->
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" role="region" aria-labelledby="blog-heading">
+        <h2 id="blog-heading">my thoughts</h2>
+        <div class="grid">
+            <div class="blog-card">
+                <h3>Building a Brain-Controlled Prosthetic</h3>
+                <p>Exploring how EEG technology can transform robotics and accessibility.</p>
+                <a href="blog/post1.html" class="read-link">Read More →</a>
+            </div>
+            <div class="blog-card">
+                <h3>The Future of Enzyme Modification</h3>
+                <p>Thoughts on applying genetic engineering to real-world problems.</p>
+                <a href="blog/post2.html" class="read-link">Read More →</a>
+            </div>
+            <!-- Add new blog posts here -->
+            <!-- Template:
+            <div class="blog-card">
+                <h3>[Post Title]</h3>
+                <p>[Short excerpt, 20-30 words]</p>
+                <a href="blog/[post-slug].html" class="read-link">Read More →</a>
+            </div>
+            -->
+        </div>
+        <div class="more">
+            <h3><a href="https://substack.com/@zsigmondpelobello" target="_blank">Read more on Substack →</a></h3>
         </div>
     </section>
 
     <!-- CONTACT -->
     <hr>
-    <section id="contact">
-        <h2>my other stuff</h2>
+    <section id="contact" role="region" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">my other stuff</h2>
         <div class="social-links">
-            <a href="mailto:zsigmondpl0@gmail.com">
+            <a href="mailto:zsigmondpl0@gmail.com?subject=Hello%20Zsigmond!">
                 <i class='bx bx-envelope'></i>
                 <span>zsigmondpl0@gmail.com</span>
             </a>
