@@ -6,180 +6,237 @@
     <meta name="description" content="Zsigmond Pelobello's portfolio showcasing robotics, programming, and innovative projects like neuroprosthetics.">
     <meta name="keywords" content="Zsigmond Pelobello, robotics, programming, neuroprosthetics, brain-computer interfaces">
     <title>Zsigmond Pelobello</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav role="navigation">
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#working">Current</a>
-            <a href="#projects">Projects</a>
-            <a href="#associations">Associations</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="nav-socials">
-            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank" aria-label="LinkedIn">
-                <i class='bx bxl-linkedin'></i>
-            </a>
-            <a href="https://github.com/xLumen0" target="_blank" aria-label="GitHub">
-                <i class='bx bxl-github'></i>
-            </a>
-            <a href="https://www.youtube.com/@zsiggyp" target="_blank" aria-label="YouTube">
-                <i class='bx bxl-youtube'></i>
-            </a>
-            <a href="https://substack.com/@zsigmondpelobello" target="_blank" aria-label="Substack">
-                <i class='bx bxs-news'></i>
-            </a>
-        </div>
-    </nav>
-
-    <!-- HEADER -->
-    <header id="about" role="banner">
-        <div class="header-text">
+    <!-- Sidebar -->
+    <aside>
+        <div class="header">
             <h1>Zsigmond Pelobello</h1>
-            <p class="subtitle">About Me</p>
-            <div class="about-description">
-                <p>(zy-min)</p>
-                <p>I'm a 16-year-old passionate about robotics and programming, working with tools like Python, Arduino, and EEG to build innovative projects.</p>
-                <p>I want to create projects that evoke joy, which I can share with others.</p>
+            <img src="images/headshotcrop.jpg" alt="Zsigmond Pelobello’s headshot" class="profile-img" loading="lazy">
+        </div>
+        <div class="bio">
+            <p>(zy-min)</p>
+            <p>I'm a 16-year-old passionate about robotics and programming, working with tools like Python, Arduino, and EEG to build innovative projects.</p>
+            <p>I want to create projects that evoke joy, which I can share with comics.</p>
+        </div>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://github.com/xLumen0" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+            <a href="https://www.youtube.com/@zsiggyp" target="_blank" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+            <a href="https://x.com/ZsigmondP40956" target="_blank" aria-label="X"><i class='bx bxl-twitter'></i></a>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
             </div>
         </div>
-        <img src="images/headshotcrop.jpg" alt="Zsigmond Pelobello, a young robotics enthusiast" class="profile-img" loading="lazy">
-    </header>
-
-    <!-- CURRENT WORK -->
-    <section id="working" role="region" aria-labelledby="working-heading">
-        <h2 id="working-heading">currently learning</h2>
-        <div class="current-description">
-            <p>How to create a brain-controlled prosthetic arm using EEG technology.</p>
-            <p>Genetically modifying enzymes and applying them to real-world industries.</p>
+        <div class="sidebar-nav">
+            <a href="#projects" class="nav-button">Projects</a>
+            <a href="#companies" class="nav-button">Companies I Know</a>
         </div>
-    </section>
+        <div class="semicircle"></div>
+    </aside>
 
-    <!-- PROJECTS -->
-    <section id="projects" role="region" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">things I've done</h2>
-        <div class="grid">
-            <div class="project-card-cur">
-                <h3>Neuroprosthetic</h3>
-                <p>3D-printed prosthetic hand controlled by brain waves.</p>
-                <a href="projects/neuroprosthetic/neuroprosthetic.html" class="view-link">View →</a>
-            </div>
-            <div class="project-card">
-                <h3>CRM Manager</h3>
-                <p>Local Chrome extension to track outreach and remind me to follow up.</p>
-                <a href="projects/crm-manager/crm-manager.html" class="view-link">View →</a>
-            </div>
-            <!-- Add new projects here -->
-            <!-- Template:
+    <!-- Main Content -->
+    <main>
+        <section id="content" class="content-section" role="region" aria-labelledby="content-heading">
+            <!-- Projects Subsection -->
+            <!-- Templates for Adding New Content -->
+            <!-- Template for a new Project Card -->
+            <!--
+                To add a new project:
+                1. Copy the block below.
+                2. Paste it inside the <div class="grid"> within #projects.
+                3. Replace placeholders with your content:
+                   - [Project Title] with the project name.
+                   - [Insert Date] with the completion or start date.
+                   - [Project Description] with a brief description.
+                   - [Tab ID] with a unique ID (e.g., #new-project-tab) for the side tab.
+                   - [Side Tab Content] with detailed content in a matching <div id="[Tab ID]"> section.
+                -->
+            <!--
             <div class="project-card">
                 <h3>[Project Title]</h3>
-                <p>[Short description]</p>
-                <a href="projects/[project-name]/[project-name].html" class="view-link">View →</a>
+                <p class="project-date">[Insert Date]</p>
+                <p>[Project Description]</p>
+                <a href="[Tab ID]" class="view-link">View →</a>
             </div>
             -->
-        </div>
-        <div class="more">
-            <h3>🍲 cooking up more stuff soon</h3>
-        </div>
-    </section>
+            <div id="projects">
+                <h2>Things I've Done</h2>
+                <div class="grid">
+                    <div class="project-card">
+                        <h3>Neuroprosthetic</h3>
+                        <p class="project-date">Nov 24 - Present</p>
+                        <p>3D-printed prosthetic hand controlled by brain waves.</p>
+                        <a href="#neuroprosthetic-tab" class="view-link">View →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>CRM Manager</h3>
+                        <p class="project-date">Mar 25</p>
+                        <p>Local Chrome extension to track outreach and remind me to follow up.</p>
+                        <a href="#crm-manager-tab" class="view-link">View →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Blackjack Glasses</h3>
+                        <p class="project-date">Apr 25 - May 25</p>
+                        <p>[Project Description]</p>
+                        <a href="[Tab ID]" class="view-link">View →</a>
+                    </div>
+                </div>
+                <div class="more">
+                    <div class="project-card cooking-card">
+                        <p>🍲 Cooking up more stuff soon</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- ASSOCIATIONS -->
-    <section id="associations" role="region" aria-labelledby="associations-heading">
-        <h2 id="associations-heading">companies I know</h2>
-        <div class="grid">
-            <div class="company-card">
-                <img src="images/ikea.jpg" alt="IKEA logo" loading="lazy">
-                <h3>IKEA</h3>
-                <p>Collaborated with a team of five to pitch innovative ideas for enhancing the IKEA experience, gaining valuable teamwork and presentation skills.</p>
+          
+
+          
+            <!-- Companies Subsection -->
+            <div id="companies">
+                <h2>Companies I Know</h2>
+                <div class="grid">
+                    <div class="company-card">
+                        <img src="images/ikea.jpg" alt="IKEA logo" loading="lazy">
+                        <h3>IKEA</h3>
+                        <p>Collaborated with a team of five to pitch innovative ideas for enhancing the IKEA experience, gaining valuable teamwork and presentation skills.</p>
+                    </div>
+                    <div class="company-card">
+                        <img src="images/tks.jpg" alt="The Knowledge Society logo" loading="lazy">
+                        <h3>The Knowledge Society</h3>
+                        <p>TKS 25' Innovate</p>
+                        <p>An amazing program that helped me meet new friends, find new passions, and boost my growth 10x.</p>
+                    </div>
+                </div>
             </div>
+        </section>
+          <!-- Template for a new Company Card -->
+            <!--
+                To add a new company:
+                1. Copy the block below.
+                2. Paste it inside the <div class="grid"> within #companies.
+                3. Replace placeholders with your content:
+                   - images/[Company Image].jpg with the path to the company logo.
+                   - [Company Name] with the company name.
+                   - [Company Description] with a brief description.
+                -->
+            <!--
             <div class="company-card">
-                <img src="images/tks.jpg" alt="The Knowledge Society logo" loading="lazy">
-                <h3>The Knowledge Society</h3>
-                <p>TKS 25' Innovate</p>
-                <p>An amazing program that helped me meet new friends, find new passions, and boost my growth 10x.</p>
-            </div>
-            <!-- Add new associations here -->
-            <!-- Template:
-            <div class="company-card">
-                <img src="images/[company-name].jpg" alt="[Company Name] logo" loading="lazy">
+                <img src="images/[Company Image].jpg" alt="[Company Name] logo" loading="lazy">
                 <h3>[Company Name]</h3>
-                <p>[Description of involvement]</p>
+                <p>[Company Description]</p>
             </div>
             -->
-        </div>
-    </section>
 
-    <!-- BLOG -->
-    <section id="blog" role="region" aria-labelledby="blog-heading">
-        <h2 id="blog-heading">my thoughts</h2>
-        <div class="grid">
-            <div class="blog-card">
-                <h3>Building a Brain-Controlled Prosthetic</h3>
-                <p>Exploring how EEG technology can transform robotics and accessibility.</p>
-                <a href="blog/post1.html" class="read-link">Read More →</a>
+        <!-- Side Tabs for Project Details -->
+        <div id="neuroprosthetic-tab" class="side-tab">
+            <a href="#projects" class="close-tab">Close</a>
+            <div class="tab-content">
+                <h1>Neuroprosthetic</h1>
+                <p class="subtitle">A 3D-printed prosthetic hand controlled by brain waves</p>
+                <div class="project-content">
+                    <p>I built a prosthetic hand using 3D printing and EEG technology to interpret brain signals. This project combines my passion for robotics and brain-computer interfaces, aiming to create affordable assistive devices.</p>
+                    <p>Key features include real-time signal processing and a lightweight design. I’m currently refining the EEG accuracy and exploring applications in rehabilitation.</p>
+                    <h3>Demo Video</h3>
+                    <iframe width="100%" height="315" src="[Insert YouTube Embed URL]" title="Neuroprosthetic Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    <h3>Gallery</h3>
+                    <div class="project-gallery">
+                        <img src="images/neuroprosthetic/image1.jpg" alt="Neuroprosthetic prototype" loading="lazy">
+                        <img src="images/neuroprosthetic/image2.jpg" alt="EEG setup for neuroprosthetic" loading="lazy">
+                    </div>
+                </div>
             </div>
-            <div class="blog-card">
-                <h3>The Future of Enzyme Modification</h3>
-                <p>Thoughts on applying genetic engineering to real-world problems.</p>
-                <a href="blog/post2.html" class="read-link">Read More →</a>
-            </div>
-            <!-- Add new blog posts here -->
-            <!-- Template:
-            <div class="blog-card">
-                <h3>[Post Title]</h3>
-                <p>[Short excerpt, 20-30 words]</p>
-                <a href="blog/[post-slug].html" class="read-link">Read More →</a>
-            </div>
-            -->
         </div>
-        <div class="more">
-            <h3><a href="https://substack.com/@zsigmondpelobello" target="_blank">Read more on Substack →</a></h3>
-        </div>
-    </section>
 
-    <!-- CONTACT -->
-    <hr>
-    <section id="contact" role="region" aria-labelledby="contact-heading">
-        <h2 id="contact-heading">my other stuff</h2>
-        <div class="social-links">
-            <a href="mailto:zsigmondpl0@gmail.com?subject=Hello%20Zsigmond!">
-                <i class='bx bx-envelope'></i>
-                <span>zsigmondpl0@gmail.com</span>
-            </a>
-            <a href="https://www.linkedin.com/in/zsigmond-pelobello-0aa83927b/" target="_blank">
-                <i class='bx bxl-linkedin'></i>
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/xLumen0" target="_blank">
-                <i class='bx bxl-github'></i>
-                <span>GitHub</span>
-            </a>
-            <a href="https://www.youtube.com/@zsiggyp" target="_blank">
-                <i class='bx bxl-youtube'></i>
-                <span>YouTube</span>
-            </a>
-            <a href="https://substack.com/@zsigmondpelobello" target="_blank">
-                <i class='bx bxs-news'></i>
-                <span>Substack</span>
-            </a>
+        <div id="crm-manager-tab" class="side-tab">
+            <a href="#projects" class="close-tab">Close</a>
+            <div class="tab-content">
+                <h1>CRM Manager</h1>
+                <p class="subtitle">A Chrome extension for outreach tracking</p>
+                <div class="project-content">
+                    <p>Developed a Chrome extension to streamline outreach tracking. Features include automated reminders and a lightweight interface for managing contacts.</p>
+                    <p>Built using JavaScript and Chrome’s storage API, this tool helps me stay organized and follow up effectively.</p>
+                    <h3>Gallery</h3>
+                    <div class="project-gallery">
+                        <img src="images/crm-manager/image1.jpg" alt="CRM Manager interface" loading="lazy">
+                        <img src="images/crm-manager/image2.jpg" alt="CRM Manager features" loading="lazy">
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <!-- SMOOTH SCROLL SCRIPT -->
+        <!-- Overlay for Side Tab -->
+        <div class="overlay"></div>
+    </main>
+
+    <!-- JavaScript for Smooth Scroll, Side Tab, and Theme Toggle -->
     <script>
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                section.scrollIntoView({ behavior: 'smooth' });
+                const href = this.getAttribute('href');
+                const sectionId = href.substring(1);
+                const section = document.getElementById(sectionId);
+
+                if (section) {
+                    if (href.startsWith('#neuroprosthetic-tab') || href.startsWith('#crm-manager-tab')) {
+                        // Open side tab
+                        window.location.hash = sectionId;
+                        section.style.visibility = 'visible';
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateX(0)';
+                    } else {
+                        e.preventDefault(); // Smooth scroll for section links
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             });
+
+            // Close side tab
+            document.querySelectorAll('.close-tab').forEach(close => {
+                close.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tab = this.closest('.side-tab');
+                    if (tab) {
+                        tab.style.transform = 'translateX(100%)';
+                        tab.style.opacity = '0';
+                        setTimeout(() => {
+                            tab.style.visibility = 'hidden';
+                            window.location.hash = '';
+                            const projectsSection = document.getElementById('projects');
+                            if (projectsSection) {
+                                projectsSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 310); // Buffer for 300ms transition
+                    }
+                });
+            });
+        });
+
+        // Theme toggle
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Check localStorage for saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeSwitch.checked = true;
+        }
+
+        themeSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
         });
     </script>
 </body>
