@@ -103,12 +103,67 @@ aside .nav-button {
     border-radius: 6px;
     text-align: center;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
+    position: relative;
 }
 
 aside .nav-button:hover {
     background: var(--accent-color);
     color: #FAFAFA; /* --primary-foreground */
     border-color: var(--accent-color);
+}
+
+aside .nav-button.secret-nav {
+    padding: 0.4rem 1.5rem; /* Reduced height */
+    font-size: 0.9rem; /* Smaller font for readability */
+    margin-bottom: 0.5rem; /* Reduced spacing */
+}
+
+aside .nav-button.secret-nav:hover {
+    background: transparent;
+    border-color: transparent;
+    color: var(--text-color);
+}
+
+aside .nav-button.secret-nav::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background: linear-gradient(
+        45deg,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red
+    ) border-box;
+    background-size: 800%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+aside .nav-button.secret-nav:hover::before {
+    opacity: 1;
+    animation: rainbow 8s linear infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 800% 50%;
+    }
 }
 
 /* Theme Toggle */
@@ -190,6 +245,40 @@ main {
     box-sizing: border-box;
 }
 
+/* Disclaimer Popup */
+.disclaimer-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 33.33%;
+    width: 66.67%;
+    height: 100vh;
+    background: rgba(var(--accent-color-rgb), 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.disclaimer-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 2rem;
+}
+
+.disclaimer-content p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.disclaimer-content .nav-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+}
+
 /* Content Sections */
 .content-section {
     display: none;
@@ -199,13 +288,22 @@ main {
     display: block;
 }
 
-#content {
-    display: block; /* Default visible section on desktop */
+#content, #secret, #reading-list, #chats-with-gpt, #lore {
+    display: block; /* Default visible section */
 }
 
-/* Subsections */
-#projects, #companies {
-    margin-bottom: 4rem;
+/* Introductory Text */
+.intro-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro-text p {
+    font-size: 1rem;
+    color: var(--text-color);
 }
 
 /* Section Headings */
@@ -272,6 +370,50 @@ h2 {
     border-radius: 8px;
 }
 
+/* Secret Card */
+.secret-card {
+    background: var(--card-bg);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.secret-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.secret-card p {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin: 0;
+}
+
+.secret-card:hover {
+    border-color: transparent;
+    box-shadow: 0 0 10px 2px rgb(255, 0, 0), 
+                0 0 10px 4px rgb(0, 255, 0), 
+                0 0 10px 6px rgb(0, 0, 255);
+    animation: rgbGlow 1.5s infinite alternate;
+}
+
+@keyframes rgbGlow {
+    0% {
+        box-shadow: 0 0 10px 2px rgb(255, 0, 0), 
+                    0 0 10px 4px rgb(0, 255, 0), 
+                    0 0 10px 6px rgb(0, 0, 255);
+    }
+    100% {
+        box-shadow: 0 0 10px 2px rgb(0, 255, 0), 
+                    0 0 10px 4px rgb(0, 0, 255), 
+                    0 0 10px 6px rgb(255, 0, 0);
+    }
+}
+
 /* Cooking Card */
 .more {
     margin-top: 2rem;
@@ -280,13 +422,13 @@ h2 {
 .cooking-card {
     width: 100%;
     text-align: center;
-    padding: 1rem;
+    padding: 0rem;
     cursor: default;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100px; /* Ensure enough height for vertical centering */
-}
+    min-height: 10px; /* Ensure enough height for vertical centering */
+}   
 
 .cooking-card p {
     font-size: 1rem;
@@ -360,40 +502,39 @@ h2 {
 
 .side-tab .tab-content h3 {
     font-size: 1.3rem;
-    font-weight: 700;
     margin: 1.5rem 0 0.5rem;
 }
 
 .side-tab .project-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Reduced min width for better fit */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 1rem;
     margin-bottom: 1.5rem;
-    width: 100%; /* Ensure gallery uses full container width */
+    width: 100%;
 }
 
 .side-tab .project-gallery img {
-    width: auto; /* Retain original image scale */
-    height: auto; /* Retain original image scale */
-    max-width: var(--image-size, 30%); /* Use custom property with default value */
+    width: auto;
+    height: auto;
+    max-width: var(--image-size, 30%);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .side-tab iframe {
-    max-width: 100%;
+    max-width: 90%;
     border-radius: 8px;
 }
 
-/* Overlay to Dim Background */
+/* Overlay for Side Tab */
 .overlay {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
 
@@ -401,73 +542,54 @@ h2 {
     display: block;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
     aside {
-        position: static;
         width: 100%;
-        height: 100vh;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        height: auto;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
     }
-    aside .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    aside .profile-img {
-        margin-top: 1rem;
-    }
-    aside .socials {
-        flex-wrap: wrap;
-    }
-    .contact-info {
-        position: static;
-        margin-top: 2rem;
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--text-color);
-    }
-    .contact-info i {
-        margin-right: 0.5rem;
-        color: var(--accent-color);
-    }
+
     main {
         margin-left: 0;
-        padding: 2rem;
         width: 100%;
-        box-sizing: border-box;
+        padding: 1.5rem;
     }
-    .content-section {
+
+    .disclaimer-popup {
+        left: 0;
         width: 100%;
-        padding: 0;
-        margin: 0;
     }
-    .content-section:target {
-        display: block;
+
+    .side-tab {
+        width: 100%;
     }
-    main:target {
-        display: block;
-    }
+
     .grid {
         grid-template-columns: 1fr;
-        width: 100%;
-        margin: 0;
-        padding: 0;
     }
-    .side-tab {
-        width: 100%; /* Full width on mobile */
+
+    .project-card, .company-card, .secret-card {
+        margin-bottom: 1rem;
     }
-    .side-tab .tab-content .content-container {
-        max-width: 100%; /* Remove max-width constraint on mobile */
-        margin: 0;
-        border: none; /* Remove border on mobile for full-width display */
-        padding: 1rem; /* Adjusted padding for mobile */
+
+    .cooking-card {
+        min-height: 50px;
     }
-    .side-tab .project-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted for mobile */
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    aside {
+        width: 40%;
     }
-    .side-tab .project-gallery img {
-        max-width: 100%; /* Full width on mobile, overriding data-size */
+
+    main {
+        width: calc(60% - 2rem);
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
