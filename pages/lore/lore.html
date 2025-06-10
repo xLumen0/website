@@ -6,17 +6,402 @@
     <meta name="description" content="Zsigmond Pelobello's personal stories and experiences that inspire his projects.">
     <meta name="keywords" content="Zsigmond Pelobello, lore, personal stories">
     <title>Zsigmond Pelobello - Lore</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="icon" type="image/x-icon" href="../../favicon.png">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Blur effect for the entire page */
+        body.blurred > *:not(#passwordOverlay) {
+            filter: blur(8px);
+            pointer-events: none; /* Disable interactions while blurred */
+        }
+
+        /* Password overlay styling */
+        #passwordOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .password-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-container p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .password-container input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            width: 200px;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .password-container button,
+        .password-container .exit-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .password-container button:hover,
+        .password-container .exit-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .password-container .error-message {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /* Book-like styling */
+        .book-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .book-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .return-button:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Dropdown menu styling */
+        .chapter-dropdown {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .dropdown-button {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .dropdown-button:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--card-bg);
+            min-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .submenu {
+            position: relative;
+        }
+
+        .submenu-title {
+            padding: 1rem 1.5rem;
+            background: var(--bg-color);
+            font-weight: 600;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+        }
+
+        .submenu-title:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .submenu-content {
+            display: none;
+            background: var(--card-bg);
+        }
+
+        .submenu-content.show {
+            display: block;
+        }
+
+        .story-button {
+            display: block;
+            padding: 0.75rem 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lato', sans-serif;
+            position: relative;
+        }
+
+        .story-button:hover {
+            background: var(--bg-color);
+            color: var(--accent-color);
+            padding-left: 2.5rem;
+        }
+
+        .story-button:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .story-button.read {
+            color: var(--secondary-text);
+            font-style: italic;
+        }
+
+        .story-button.read::after {
+            content: "✓";
+            position: absolute;
+            right: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* Story popup modal */
+        .story-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .story-modal-content {
+            background: var(--card-bg);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .story-modal h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .story-modal p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-actions {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mark-read-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mark-read-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .mark-read-btn:disabled {
+            background: var(--secondary-text);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Decorative elements */
+        .ornament {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin: 2rem 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .book-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .book-title {
+                font-size: 2.5rem;
+            }
+
+            .story-modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 1.5rem;
+            }
+
+            .story-modal h3 {
+                font-size: 1.5rem;
+            }
+
+            .story-modal p {
+                font-size: 1rem;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .password-container p {
+                font-size: 1.2rem;
+            }
+
+            .password-container input {
+                width: 80%;
+            }
+
+            .password-container button,
+            .password-container .exit-button {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="blurred">
+    <!-- Password Overlay -->
+    <div id="passwordOverlay">
+        <div class="password-container">
+            <p>not ready yet to be shared password</p>
+            <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key === 'Enter') checkPassword()">
+            <br>
+            <button onclick="checkPassword()">Submit</button>
+            <a href="../secret.html" class="exit-button">Exit</a>
+            <div class="error-message" id="errorMessage">Incorrect password. Try again.</div>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <aside>
         <div class="header">
             <h1>Zsigmond Pelobello</h1>
-            <img src="images/headshotcrop.jpg" alt="Zsigmond Pelobello’s headshot" class="profile-img" loading="lazy">
+            <img src="../../images/headshotcrop.jpg" alt="Zsigmond Pelobello's headshot" class="profile-img" loading="lazy">
         </div>
         <div class="bio">
             <p>(zy-min)</p>
@@ -37,9 +422,9 @@
             </div>
         </div>
         <div class="sidebar-nav">
-            <a href="index.html#projects" class="nav-button">Projects</a>
-            <a href="index.html#companies" class="nav-button">Associations</a>
-            <a href="secret.html" class="nav-button secret-nav">Secret</a>
+            <a href="../../index.html#projects" class="nav-button">Projects</a>
+            <a href="../../index.html#companies" class="nav-button">Associations</a>
+            <a href="../secret.html" class="nav-button secret-nav">Secret</a>
         </div>
         <div class="contact-info">
             <i class='bx bxs-envelope'></i>  zsigmondpl0@gmail.com
@@ -48,19 +433,83 @@
 
     <!-- Main Content -->
     <main>
-        <section id="lore" class="content-section" role="region" aria-labelledby="lore-heading">
-            <h2>lore</h2>
-            <p>Placeholder content for my personal stories. Stay tuned for updates!</p>
-        </section>
+        <div class="book-container">
+            <h1 class="book-title">The Chronicles</h1>
+            <p class="book-subtitle">Stories that shaped my journey</p>
+            
+            <div class="ornament">❦</div>
+            
+            <div class="chapter-dropdown">
+                <button class="dropdown-button" id="chapterDropdown">
+                    Chapter One: The Beginning
+                    <i class='bx bx-chevron-down'></i>
+                </button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="submenu">
+                        <div class="submenu-title" onclick="toggleSubmenu('websummitSubmenu')">
+                            Web Summit
+                            <i class='bx bx-chevron-right'></i>
+                        </div>
+                        <div class="submenu-content" id="websummitSubmenu">
+                            <div class="story-button" onclick="openStory('websummit0')">Pre Web Summit</div>
+                            <div class="story-button" onclick="openStory('websummit1')">Day of Web Summit</div>
+                            <div class="story-button" onclick="openStory('websummit7')">Post Web Summit</div>
+                        </div>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-title" onclick="toggleSubmenu('tksSubmenu')">
+                            TKS
+                            <i class='bx bx-chevron-right'></i>
+                        </div>
+                        <div class="submenu-content" id="tksSubmenu">
+                            <div class="story-button" onclick="openStory('tks1')">The Knowledge Society</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ornament">❦</div>
+            
+            <p style="text-align: center; color: var(--secondary-text); font-style: italic; font-family: 'Crimson Text', serif;">
+                Select a chapter above to begin reading...
+            </p>
+        </div>
     </main>
 
-    <!-- JavaScript for Theme Toggle -->
+    <!-- Story Modal -->
+    <div id="storyModal" class="story-modal">
+        <div class="story-modal-content">
+            <span class="close-modal" onclick="closeStory()">×</span>
+            <h3 id="storyTitle"></h3>
+            <div id="storyContent"></div>
+            <div class="modal-actions">
+                <button id="markReadBtn" class="mark-read-btn" onclick="markAsRead()">Mark as Read</button>
+                <span id="readStatus" style="color: var(--secondary-text); font-size: 0.9rem;"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>
+        // Password check function
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const correctPassword = 'ohfrigginboygg123';
+
+            if (passwordInput === correctPassword) {
+                document.getElementById('passwordOverlay').style.display = 'none';
+                document.body.classList.remove('blurred');
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = ''; // Clear input
+            }
+        }
+
         // Theme toggle
         const themeSwitch = document.getElementById('theme-switch');
         const body = document.body;
 
-        // Check localStorage for saved theme
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
             themeSwitch.checked = true;
@@ -74,6 +523,218 @@
                 body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
             }
+        });
+
+        // Read stories tracking
+        let readStories = JSON.parse(localStorage.getItem('readStories') || '{}');
+        let currentStoryId = null;
+
+        // Update UI for read stories
+        function updateReadUI() {
+            Object.keys(readStories).forEach(storyId => {
+                if (readStories[storyId]) {
+                    const buttons = document.querySelectorAll(`[onclick="openStory('${storyId}')"]`);
+                    buttons.forEach(button => button.classList.add('read'));
+                }
+            });
+        }
+
+        // Mark story as read
+        function markAsRead() {
+            if (currentStoryId) {
+                readStories[currentStoryId] = true;
+                localStorage.setItem('readStories', JSON.stringify(readStories));
+                updateReadUI();
+                updateModalReadStatus();
+            }
+        }
+
+        // Update modal read status
+        function updateModalReadStatus() {
+            const readBtn = document.getElementById('markReadBtn');
+            const readStatus = document.getElementById('readStatus');
+            
+            if (currentStoryId && readStories[currentStoryId]) {
+                readBtn.disabled = true;
+                readBtn.textContent = 'Already Read';
+                readStatus.textContent = '✓ You have read this story';
+            } else {
+                readBtn.disabled = false;
+                readBtn.textContent = 'Mark as Read';
+                readStatus.textContent = '';
+            }
+        }
+
+        // Dropdown functionality
+        document.getElementById('chapterDropdown').addEventListener('click', function() {
+            document.getElementById('dropdownContent').classList.toggle('show');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('bx-chevron-down');
+            icon.classList.toggle('bx-chevron-up');
+        });
+
+        function toggleSubmenu(submenuId) {
+            const submenu = document.getElementById(submenuId);
+            submenu.classList.toggle('show');
+            const icon = event.target.querySelector('i');
+            icon.classList.toggle('bx-chevron-right');
+            icon.classList.toggle('bx-chevron-down');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-button') && !event.target.closest('.dropdown-content')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        });
+
+        // Story content database
+        const stories = {
+            websummit0: {
+                title: "Pre Web Summit",
+                content: `
+                    <p>I recently found myself at a crossroads — physically at the Web Summit, mentally somewhere else entirely. Since this was opening night, there wasn't really much networking to be done; however, I was accompanied by some friends. This was when one of them started asking me: Why was I there?</p>
+                    
+                    <p>I thought for a while and spat something out. Surrounded by buzzwords like “networking,” “internships,” and “career goals,” I realized I was just reciting a script I’d been taught, not speaking from my own voice. I felt disconnected, like I was performing an act I didn’t fully believe in. The pressure weighed heavily on me, and all I wanted was to sit quietly in a corner, alone with my thoughts.</p>
+                    
+                    <p>I’m 16, and while I know the path I “should” take to build a successful career, it felt like I was just checking off boxes — not truly following what excited me. I love creating, solving problems I invent myself. One recent project I loved was trying to beat the odds in blackjack through coding. But even though I knew coding and designing were my passions, starting was a struggle. The motivation wasn’t missing; it was stuck behind a wall of doubts and expectations.</p>
+                    
+                    <p>What I really craved was freedom — freedom to build something silly, fun, and uniquely mine, without worrying about whether it made sense or impressed anyone. Yet, when asked about what I wanted, I found myself speechless. It felt like everyone expected instant clarity from me, but the truth was: I didn’t know. And that uncertainty felt scary.</p>
+                    
+                    <p>Then, something changed. I tried freewriting — a practice I had seen others do but never attempted seriously. That night, I put pen to paper and just let my thoughts flow, without judgment or editing. And damn, did it open something up. For the first time, I could see what I was thinking. Instead of losing my ideas in the chaos of my mind, I caught them on paper. They took shape, they made sense.</p>
+                    
+                    <p>This journey taught me a vital lesson: it’s okay not to have all the answers right now. It’s okay to step away from the noise, to sit in the quiet, and let yourself just be. Creativity and purpose don’t always arrive fully formed. Sometimes, they begin as small sparks, flickering just at the edge of awareness.</p>
+                    
+                    <p>So here I am, stepping away from the summit early, choosing to start fresh tomorrow — with no pressure, no script, just me and whatever projects or ideas make my heart ignite. I’m learning to honor the process, not just the outcome. And for now, that’s enough.</p>
+                `
+            },
+            websummit1: {
+                title: "Official First Day",
+                content: `
+                    <p>I didn’t expect to feel like this walking into Web Summit. I mean, I knew it would be intense, but I thought I’d blend in better. It hit different once I was actually there — people everywhere, walking fast, talking faster, all seeming like they had something to build or pitch or prove. Everyone looked like they were already in motion, like they knew exactly where they were going. I felt like a glitch. Like, I was 16, wandering through this city of adults.</p>
+                    
+                    <p>Early on, I stuck around M and G. M especially was wild — not in a bad way, just full of energy. He was saying all the right things, sympathetic, smooth. Felt like he had this way of steering convos in his favor, kind of Jedi mind-tricking people by being understanding. It wasn’t fake, just… sharp. But the more I hung around him, the more I started seeing what A and Z mentioned — this sense that M carried himself like he was a bit above everyone. Not in a loud, arrogant way, but just enough to feel it in the space between words. And the way I instantly started agreeing once they said that? That’s something I keep noticing in myself. I tend to lean into others’ takes too easily, even before checking how I actually feel. I don’t always have my own frame.</p>
+                    
+                    <p>But that moment where they pushed me — like really pushed me — to go talk to A, that random white kid? That changed the day. I was nervous, no lie. But I just told myself, what’s the worst that could happen? A ended up being this LLM prodigy — building chatbot stuff like it was no big deal, teaching himself all of it. I was low-key shook. But in a good way. I didn’t feel small next to him, I felt excited. Like, whoa, this guy exists and he’s not that far from where I’m standing. The gap wasn’t impossible.</p>
+                    
+                    <p>That one interaction made me feel like maybe I could keep going. I ran into A a bunch throughout the event and even introduced him to some other folks from T. It felt natural. Like I was building something. Like I belonged.</p>
+                    
+                    <p>Still, every time someone hit me with a deep question, especially from M, I felt like I was fumbling for my own thoughts. He asked “why” over and over again — and at the time it was annoying, like bro relax — but thinking back, it kind of unlocked something. Made me reflect differently. Maybe that’s part of why he gets so far — he doesn’t let his ideas sit in surface-level comfort. He pokes. Prods. Dissects. Even if it’s annoying, it pushes people to dig deeper.</p>
+                    
+                    <p>It got me thinking: am I being too conventional? Like, yeah I’m not like the average high schooler, but I’m also not doing anything particularly different. I still follow people’s lead. Still hesitate. Still miss opportunities because I’m scared of looking weird or saying the wrong thing. Like with J and M (the famous ones). I saw them. Had the chance. Froze. After they passed, I thought of a perfect line. Too late.</p>
+                    
+                    <p>That keeps happening. I do the thing the wrong way, and then I think of all the better ways I could’ve done it. I wish the reverse were true. I wish I was just quicker on my feet, thinking clearly in the moment instead of only after the fact. But I’m learning. Slowly. One miss at a time.</p>
+                    
+                    <p>The other thing I realized — people don’t want perfect. They want human. I got advice that stuck: don’t be transactional. Don’t treat people like checklists or strategy steps. Just be. Share yourself. Joke. Be chill. Treat the person in front of you like a friend you don’t know yet. That kind of vibe actually works. Because people don’t remember the best pitch — they remember how you made them feel. Whether they felt seen, or just talked at.</p>
+                    
+                    <p>And when I don’t know what to say, curiosity is the move. Real curiosity. Like, what’s lighting this person up right now? What are they obsessed with? What’s something they regret? What would they tell their younger self?</p>
+                    
+                    <p>Next time I talk to someone like M or J, I’m not gonna just throw out “how’d you get started?” That question’s dead. I’ll say something that grounds me, like: “I’m 16, first time here, wasn’t expecting to meet someone like you. What made you show up to a place like this?” That kind of thing. Make it personal. Make it real.</p>
+                    
+                    <p>I’m starting to figure out how to leave an impression. Slow my intro down. Don’t try to impress — try to connect. Give people space to step into the story. Leave a little mystery. Leave a loop open so they want to stay in the convo.</p>
+                    
+                    <p>I’m not perfect at any of this yet. I still feel out of place sometimes. Still feel like I’m catching up. But I’m starting to carry myself differently. More grounded. More real. And every interaction, even the awkward ones, is part of the reps. Each one makes the next easier.</p>
+                    
+                    <p>So yeah. That was my first real summit. And maybe I didn’t crush it, but I showed up. And I’m not leaving the same way I came in.</p>
+                `
+            },
+            websummit7: {
+                title: "Post Web Summit",
+                content: `
+                    <p>I left Web Summit buzzing with ideas, but also sitting with a strange feeling in my chest — part excitement, part pressure, part... discomfort. It wasn’t just the panels or the pitch decks. It was what happened in between: the conversations, the glances at LinkedIn profiles, the internal monologues about whether to follow up or not.</p>
+                    
+                    <p>In those moments, I started realizing how much of modern networking — especially in startup culture — is driven by this quiet tension. The drive to be remembered. The desire to stand out. And the worry that it all feels transactional.</p>
+                    
+                    <p>At its best, Web Summit is this electric playground where ideas collide and momentum builds fast. You talk to someone for five minutes and suddenly your brain is spiraling into a new startup, a new tool, a new “what if.” That part I loved.</p>
+                    
+                    <p>But the flip side? I caught myself wondering: am I actually trying to build something real here — or am I just trying to be seen? When I reach out to someone after a chat, am I hoping for friendship, collaboration... or just proximity to opportunity?</p>
+                    
+                    <p>And then there's the other layer — the self-judgment. Wanting to reconnect with someone you vibed with, but hesitating because you don't want to seem like you're chasing clout. Feeling like you're "using" people just by keeping the relationship warm. Wondering if curiosity makes you annoying, or if staying silent makes you forgettable.</p>
+                    
+                    <p>It’s a strange dance — especially when you’re still learning how to lead with curiosity and not just strategy. How to let the motivation be genuine, even if the setting is professional.</p>
+                    
+                    <p>Here’s what I’m sitting with now:</p>
+                    
+                    <p>Curiosity doesn’t have to be loud to be real. You don’t need to force deep questions to prove you care. Sometimes just following up with “I’ve been thinking about our conversation — here’s a thought I had since then…” is enough.</p>
+                    
+                    <p>Professional doesn’t mean robotic. LinkedIn is stiff, but people aren’t. Moving a chat over to Instagram or another platform can let conversations breathe. It doesn’t make the connection less valid — just more human.</p>
+                    
+                    <p>Using people isn’t the same as exchanging value. Wanting to grow through others isn’t inherently bad. It’s only toxic when it’s one-sided, inauthentic, or manipulative. But mutual ambition can be connective, not extractive.</p>
+                    
+                    <p>The feeling of “off-timetable” isn’t failure. I noticed that when my schedule slipped — whether from a long conversation or just getting distracted — I’d feel like I lost the day. But momentum doesn’t die just because a plan gets messy. The real skill is in re-entry. Being able to come back without shame and keep moving.</p>
+                    
+                    <p>At the end of the day, Web Summit reminded me of something important: everyone’s winging it. Everyone's chasing something, hiding something, building something — and trying to figure out how to be seen and be real in the same breath.</p>
+                    
+                    <p>So maybe the goal isn’t to be the most impressive person in the room.</p>
+                    
+                    <p>Maybe it’s to be the one who keeps coming back — to the work, to the people, to the version of yourself you’re trying to grow into.</p>
+                `
+            },
+            tks1: {
+                title: "The Knowledge Society",
+                content: `
+                    <p>When I first heard about The Knowledge Society (TKS), I thought it was too good to be true. A program for ambitious teenagers to explore emerging technologies, work on real projects, and connect with industry leaders? It sounded like exactly what I'd been looking for my entire life.</p>
+                    
+                    <p>The application process was intense. Essays, interviews, and a showcase of my projects. But what stood out wasn't the rigor - it was how the questions made me think deeper about why I build things and what impact I want to have on the world.</p>
+                    
+                    <p>Getting accepted felt like winning the lottery. But the real magic happened when I started the program. Suddenly I was surrounded by other teenagers who were just as obsessed with technology and innovation as I was. We weren't the weird kids anymore - we were the norm.</p>
+                    
+                    <p>TKS taught me that learning doesn't have to be confined to traditional subjects or classrooms. We dove into quantum computing, synthetic biology, blockchain, and AI - not just as concepts to memorize, but as tools to solve real problems.</p>
+                    
+                    <p>But the most valuable part wasn't the technical knowledge. It was learning how to think like an entrepreneur, how to communicate complex ideas simply, and how to persistently pursue projects that matter to you.</p>
+                    
+                    <p>The program connected me with mentors who became genuine advocates for my work. They didn't treat me like a student - they treated me like a fellow builder. That shift in perspective was transformative.</p>
+                    
+                    <p>TKS showed me that age is often just a number when it comes to innovation. What matters is curiosity, persistence, and the willingness to tackle problems that others might avoid.</p>
+                    
+                    <p>Looking back, TKS wasn't just a program - it was the community and mindset that shaped how I approach every project and opportunity that comes my way.</p>
+                `
+            }
+        };
+
+        // Story modal functions
+        function openStory(storyId) {
+            currentStoryId = storyId;
+            const story = stories[storyId];
+            if (story) {
+                document.getElementById('storyTitle').textContent = story.title;
+                document.getElementById('storyContent').innerHTML = story.content;
+                document.getElementById('storyModal').style.display = 'block';
+                updateModalReadStatus();
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeStory() {
+            document.getElementById('storyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentStoryId = null;
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('storyModal');
+            if (event.target === modal) {
+                closeStory();
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+            if (event.key === 'Escape') {
+                closeStory();
+            }
+        });
+
+        // Initialize read UI on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateReadUI();
         });
     </script>
 </body>
